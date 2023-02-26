@@ -2,27 +2,34 @@
 <html lang="ja">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./src/index.js"></script>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 
 <body>
-    <div class="calculation_area">
+    <div class="calculation_area" style="padding: 20px;">
         開始日付<input type="date" id="start_date">
         終了日付<input type="date" id="end_date">
         <br>
-        <input type="checkbox" name="day_of_week" value="1">月
-        <input type="checkbox" name="day_of_week" value="2">火
-        <input type="checkbox" name="day_of_week" value="3">水
-        <input type="checkbox" name="day_of_week" value="4">木
-        <input type="checkbox" name="day_of_week" value="5">金
-        <input type="checkbox" name="day_of_week" value="6">土
-        <!-- <input type="checkbox" id="mon"> -->
+        <div><label><input type="checkbox" name="day_of_week" value="1"><span>月</span></label></div>
+        <div><label><input type="checkbox" name="day_of_week" value="2"><span>火</span></label></div>
+        <div><label><input type="checkbox" name="day_of_week" value="3"><span>水</span></label></div>
+        <div><label><input type="checkbox" name="day_of_week" value="4"><span>木</span></label></div>
+        <div><label><input type="checkbox" name="day_of_week" value="5"><span>金</span></label></div>
+        <div><label><input type="checkbox" name="day_of_week" value="6"><span>土</span></label></div>
         <br>
-        <input type="button" value="計算開始" id="calculation">
+        <input class="waves-effect waves-light btn-large" type="button" value="計算開始" id="calculation">
     </div>
-    <div class="result_area" id="result_area">
+    <ul class="result_area collection" id="result_area">
+    </ul>
 
-    </div>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 
 </html>

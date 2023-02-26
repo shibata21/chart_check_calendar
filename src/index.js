@@ -21,17 +21,38 @@ window.onload = function () {
     const result = calc(start_date.value, end_date.value, day_of_week_arr);
 
     result.forEach(function (element) {
-      const day_html = document.createElement("div");
+      const day_html = document.createElement("li");
       //getMonth()は+1しないと指定の月の前の月がでてしまう
-      day_html.textContent =
+      //   day_html.textContent =
+      //     element.getFullYear().toString().slice(-2) +
+      //     "年" +
+      //     "<span>" +
+      //     (element.getMonth() + 1).toString() +
+      //     "/" +
+      //     element.getDate().toString() +
+      //     "</span>" +
+      //     "(" +
+      //     ["日", "月", "火", "水", "木", "金", "土"][element.getDay()] +
+      //       ")";
+      day_html.innerHTML =
         element.getFullYear().toString().slice(-2) +
         "年" +
+        "<span class='red-text bold'>" +
         (element.getMonth() + 1).toString() +
         "/" +
         element.getDate().toString() +
+        "</span>" +
         "(" +
         ["日", "月", "火", "水", "木", "金", "土"][element.getDay()] +
         ")";
+
+      day_html.classList.add("collection-item");
+
+      day_html.onclick = function () {
+        day_html.classList.toggle("purple");
+        day_html.classList.toggle("lighten-5");
+      };
+
       result_area.appendChild(day_html);
     });
   };

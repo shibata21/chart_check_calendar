@@ -49,8 +49,8 @@ window.onload = function () {
       day_html.classList.add("collection-item");
 
       day_html.onclick = function () {
-        day_html.classList.toggle("purple");
-        day_html.classList.toggle("lighten-5");
+        day_html.classList.toggle("teal");
+        day_html.classList.toggle("lighten-4");
       };
 
       result_area.appendChild(day_html);

@@ -23,17 +23,6 @@ window.onload = function () {
     result.forEach(function (element) {
       const day_html = document.createElement("li");
       //getMonth()は+1しないと指定の月の前の月がでてしまう
-      //   day_html.textContent =
-      //     element.getFullYear().toString().slice(-2) +
-      //     "年" +
-      //     "<span>" +
-      //     (element.getMonth() + 1).toString() +
-      //     "/" +
-      //     element.getDate().toString() +
-      //     "</span>" +
-      //     "(" +
-      //     ["日", "月", "火", "水", "木", "金", "土"][element.getDay()] +
-      //       ")";
       day_html.innerHTML =
         element.getFullYear().toString().slice(-2) +
         "年" +

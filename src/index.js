@@ -6,6 +6,10 @@ window.onload = function () {
   const day_of_week = document.getElementsByName("day_of_week");
 
   submit.onclick = function () {
+    if (!validate(start_date.value, end_date.value)) {
+      return;
+    }
+
     const day_of_week_arr = new Array();
 
     while (result_area.firstChild) {
@@ -64,4 +68,26 @@ function calc(start, end, day_of_week) {
 
 function check_day_of_week(date, day_of_week) {
   return day_of_week.includes(date.getDay());
+}
+
+function validate(start, end) {
+  if (start === "") {
+    alert("開始日付を入力してください");
+    return false;
+  }
+
+  if (end === "") {
+    alert("終了日付を入力してください");
+    return false;
+  }
+
+  const start_date = new Date(start);
+  const end_date = new Date(end);
+
+  if (start_date.getTime() > end_date.getTime()) {
+    alert("終了日付は開始日付、以後の日付を入力してください");
+    return false;
+  }
+
+  return true;
 }

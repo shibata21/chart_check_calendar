@@ -6,11 +6,9 @@ window.onload = function () {
   const day_of_week = document.getElementsByName("day_of_week");
 
   submit.onclick = function () {
-    if (!validate(start_date.value, end_date.value)) {
-      return;
-    }
-
     const day_of_week_arr = new Array();
+
+    reset_message();
 
     while (result_area.firstChild) {
       result_area.removeChild(result_area.firstChild);
@@ -21,6 +19,10 @@ window.onload = function () {
         day_of_week_arr.push(parseInt(element.value));
       }
     });
+
+    if (!validate(start_date.value, end_date.value, day_of_week_arr)) {
+      return;
+    }
 
     const result = calc(start_date.value, end_date.value, day_of_week_arr);
 
@@ -48,6 +50,14 @@ window.onload = function () {
 
       result_area.appendChild(day_html);
     });
+
+    //指定した曜日の日付がない場合それを伝える
+    if (result.length === 0) {
+      set_message("指定した曜日の日付はありません");
+      return;
+    }
+
+    set_message("日付が見つかりました", "green");
   };
 };
 
@@ -70,14 +80,14 @@ function check_day_of_week(date, day_of_week) {
   return day_of_week.includes(date.getDay());
 }
 
-function validate(start, end) {
+function validate(start, end, day_of_week) {
   if (start === "") {
-    alert("開始日付を入力してください");
+    set_message("開始日付を入力してください");
     return false;
   }
 
   if (end === "") {
-    alert("終了日付を入力してください");
+    set_message("終了日付を入力してください");
     return false;
   }
 
@@ -85,9 +95,26 @@ function validate(start, end) {
   const end_date = new Date(end);
 
   if (start_date.getTime() > end_date.getTime()) {
-    alert("終了日付は開始日付、以後の日付を入力してください");
+    set_message("開始日付が終了日付よりも後になっています");
+    return false;
+  }
+
+  if (day_of_week.length === 0) {
+    set_message("曜日を選択してください");
     return false;
   }
 
   return true;
+}
+
+function reset_message() {
+  const message_area = document.getElementById("message");
+  message_area.innerHTML = "";
+  message_area.classList.remove(...message_area.classList);
+}
+
+function set_message(message, color = "red") {
+  const message_area = document.getElementById("message");
+  message_area.innerHTML = message;
+  message_area.classList.add(color + "-text");
 }
